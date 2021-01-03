@@ -44,5 +44,16 @@ public class TipoHabitacion {
 	public void setPrecioPorNoche(double precioPorNoche) {
 		this.precioPorNoche = precioPorNoche;
 	}
+	
+	@Override
+	public boolean equals(Object o)
+	{		
+		if(this.nombreHabitacion.equals(((TipoHabitacion) o).getNombreHabitacion()))
+		{
+			return true;
+		}
+		
+		return false;
+	}
 
 }

@@ -10,7 +10,7 @@ public interface DAOHotel {
 	
 	public Hotel crearHotel(Hotel h);
 
-	public boolean modificarHotel(Hotel h);
+	public boolean modificarHotel(String idHotelViejo, Hotel hotelNuevo);
 
 	public boolean eliminarHotel(String id);
 }
