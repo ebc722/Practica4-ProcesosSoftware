@@ -63,19 +63,16 @@ public class GestionHoteles implements IAdministracionHotelLocal, IAdministracio
 			}
 		}
 		
-		daoHoteles.modificarHotel(hotel.getId(), hotel);
+		daoHoteles.modificarHotel(hotel);
 	}
 
-	public void anhadeTipoHabitacion(String nombreHabitacion, String descripcion, double precioPorNoche,
-			int disponibles, Hotel hotel) {
+	public void anhadeTipoHabitacion(Hotel hotel, TipoHabitacion tipo) {
 
-		TipoHabitacion tipoNuevo = new TipoHabitacion(nombreHabitacion, descripcion, disponibles, precioPorNoche);
-		
 		HashSet<TipoHabitacion> habitaciones = hotel.getHabitaciones();
 		
-		habitaciones.add(tipoNuevo);
+		habitaciones.add(tipo);
 		
-		daoHoteles.modificarHotel(hotel.getId(), hotel);
+		daoHoteles.modificarHotel(hotel);
 		
 	}
 

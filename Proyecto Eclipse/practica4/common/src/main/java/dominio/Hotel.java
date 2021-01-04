@@ -10,8 +10,7 @@ public class Hotel {
 	private HashSet<Reserva> reservas;
 	private HashSet<TipoHabitacion> habitaciones;
 	
-	public Hotel(String id, String nombre, String direccion, String localidad, HashSet<TipoHabitacion> habitaciones) {
-		this.id = id;
+	public Hotel(String nombre, String direccion, String localidad, HashSet<TipoHabitacion> habitaciones) {
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.localidad = localidad;

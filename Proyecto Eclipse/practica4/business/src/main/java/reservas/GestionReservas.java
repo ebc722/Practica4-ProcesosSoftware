@@ -42,45 +42,44 @@ public class GestionReservas implements IReservaLocal, IReservaRemoto, IConsulta
 		return false;
 	}
 
-	public void confirmarReserva(String id, DatosCliente cliente, DatosTarjeta tarjeta, Hotel hotel, Date entrada, Date salida,
-			HashSet<ReservaHabitacion> habitacionesReserva) {
+	public void confirmarReserva(Hotel hotel, Reserva reserva) {
 		
 		//Cálculo del importe
 		
 		double precioNoches = 0;
 		
-		long diferencia = salida.getTime() - entrada.getTime();
+		long diferencia = reserva.getFechaSalida().getTime() - reserva.getFechaEntrada().getTime();
 		
 	    long nochesTranscurridas = TimeUnit.DAYS.convert(diferencia, TimeUnit.MILLISECONDS) + 1;
 		
-	    for(ReservaHabitacion rh : habitacionesReserva)
+	    for(ReservaHabitacion rh : reserva.getHabitacionesReservadas())
 	    {
 	    	precioNoches += rh.getTipo().getPrecioPorNoche() * rh.getNumHabitaciones();
 	    }
 	    
 	    precioNoches = precioNoches * nochesTranscurridas;
-
-		Reserva res = new Reserva(id, entrada, salida, precioNoches, cliente, tarjeta);
-		
-		daoReservas.crearReserva(res);
+	
+		daoReservas.crearReserva(reserva);
 		
 	}
 
-	//PENDIENTE
-	public Reserva consultaReserva(String id, Hotel hotel) {
+	public Reserva consultaReserva(Reserva res, Hotel hotel) {
 
+		if(hotel.getReservas().contains(res))
+		{
+			return res;
+		}
+		
 		return null;
 	}
 
-	public boolean cancelaReserva(String id, Hotel hotel) {
-		
-		Reserva resComp = daoReservas.obtenerReserva(id);
+	public boolean cancelaReserva(Reserva res, Hotel hotel) {
 		
 		Date today = Calendar.getInstance().getTime();
 		
-		if(hotel.getReservas().contains(resComp))
+		if(hotel.getReservas().contains(res))
 		{
-			long diferencia = today.getTime() - resComp.getFechaEntrada().getTime();
+			long diferencia = today.getTime() - res.getFechaEntrada().getTime();
 			
 			long transcurridos = TimeUnit.DAYS.convert(diferencia, TimeUnit.MILLISECONDS);
 			
@@ -90,51 +89,57 @@ public class GestionReservas implements IReservaLocal, IReservaRemoto, IConsulta
 			}
 			else
 			{
-				daoReservas.eliminarReserva(id);
+				daoReservas.eliminarReserva(res.getId());
 			}
 		}
 		
 		return true;
 	}
 
-	public boolean modificarNumeroHabitacionesReserva(String id, TipoHabitacion tipo, int num, Hotel hotel) {
-
-		Reserva reserv = daoReservas.obtenerReserva(id);
-		
-		HashSet<ReservaHabitacion> habs = reserv.getHabitacionesReservadas();
-		
-		for(ReservaHabitacion rh : habs)
+	public boolean modificarNumeroHabitacionesReserva(Reserva res, TipoHabitacion tipo, int num, Hotel hotel) {
+	
+		if(hotel.getReservas().contains(res))
 		{
-			if(rh.getTipo().equals(tipo) && num < rh.getTipo().getDisponibles() + rh.getNumHabitaciones())
+			HashSet<ReservaHabitacion> habs = res.getHabitacionesReservadas();
+			
+			for(ReservaHabitacion rh : habs)
 			{
-				int dif = num - rh.getNumHabitaciones();
-						
-				rh.setNumHabitaciones(num);
-				
-				rh.getTipo().setDisponibles(rh.getTipo().getDisponibles() - dif);
-				
-				return true;
+				if(rh.getTipo().equals(tipo) && num < rh.getTipo().getDisponibles() + rh.getNumHabitaciones())
+				{
+					int dif = num - rh.getNumHabitaciones();
+							
+					rh.setNumHabitaciones(num);
+					
+					rh.getTipo().setDisponibles(rh.getTipo().getDisponibles() - dif);
+					
+					daoReservas.modificarReserva(res);
+					
+					return true;
+				}
 			}
+		
 		}
 		
-		daoReservas.modificarReserva(id, reserv);
-		
 		return false;
 	}
 
-	public boolean modificarFechaReserva(String id, Date fechaEntrada, Date fechaSalida, Hotel hotel) {
+	public boolean modificarFechaReserva(Reserva res, Date fechaEntrada, Date fechaSalida, Hotel hotel) {
 
-		Reserva reserv = daoReservas.obtenerReserva(id);
+		if(hotel.getReservas().contains(res))
+		{
+			res.setFechaEntrada(fechaEntrada);
+			res.setFechaSalida(fechaSalida);
+			
+			daoReservas.modificarReserva(res);
+			
+			return true;
+		}
 		
-		reserv.setFechaEntrada(fechaEntrada);
-		reserv.setFechaSalida(fechaSalida);
-		
-		daoReservas.modificarReserva(id, reserv);
-				
 		return false;
+		
 	}
 
-	public HashSet<Reserva> consultarReservasPeriodo(Date fechaComienzo, Date fechaFin) {
+	public HashSet<Reserva> consultarReservasPeriodo(Date fechaComienzo, Date fechaFin, Hotel hotel) {
 
 		HashSet<Reserva> reservasActuales = daoReservas.obtenerReservas();
 		

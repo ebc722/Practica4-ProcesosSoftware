@@ -12,9 +12,8 @@ public class Reserva {
 	private DatosTarjeta tarjeta;
 	private HashSet<ReservaHabitacion> habitacionesReservadas;
 	
-	public Reserva(String id, Date fechaEntrada, Date fechaSalida, double importe, DatosCliente cliente,
+	public Reserva(Date fechaEntrada, Date fechaSalida, double importe, DatosCliente cliente,
 			DatosTarjeta tarjeta) {
-		this.id = id;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
 		this.importe = importe;

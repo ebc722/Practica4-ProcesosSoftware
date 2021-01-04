@@ -11,7 +11,7 @@ public interface DAOReserva {
 	
 	public Reserva crearReserva(Reserva r);
 
-	public boolean modificarReserva(String idReservaVieja, Reserva reservaNueva);
+	public boolean modificarReserva(Reserva reserva);
 
 	public boolean eliminarReserva(String id);
 }

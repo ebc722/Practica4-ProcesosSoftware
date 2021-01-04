@@ -9,6 +9,7 @@
 	<modules>
 		<module>common</module>
 		<module>business</module>
+		<module>despliegueNegocio</module>
 	</modules>
 
 	<dependencies>
