@@ -1,6 +1,21 @@
 package dominio;
 
-public class TipoHabitacion {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name="TipoHabitaciones")
+public class TipoHabitacion implements Serializable{
+	
+	@Id
+	@GeneratedValue
+	private String id;
+	
 	private String nombreHabitacion;
 	private String descripcion;
 	private int disponibles;
@@ -11,6 +26,12 @@ public class TipoHabitacion {
 		this.descripcion = descripcion;
 		this.disponibles = disponibles;
 		this.precioPorNoche = precioPorNoche;
+	}
+	
+	public TipoHabitacion() {}
+	
+	public String getId() {
+		return id;
 	}
 
 	public String getNombreHabitacion() {

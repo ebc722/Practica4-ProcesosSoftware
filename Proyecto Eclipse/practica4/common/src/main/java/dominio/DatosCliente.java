@@ -1,7 +1,21 @@
 package dominio;
 
-public class DatosCliente {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name="DatosClientes")
+public class DatosCliente implements Serializable{
+	
+	@Id
+	@GeneratedValue
 	private String dni;
+	
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
@@ -14,6 +28,8 @@ public class DatosCliente {
 		this.apellido2 = apellido2;
 		this.email = email;
 	}
+	
+	public DatosCliente() {}
 
 	public String getDni() {
 		return dni;

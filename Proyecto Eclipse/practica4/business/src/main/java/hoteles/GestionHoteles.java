@@ -3,6 +3,7 @@ package hoteles;
 import java.util.HashSet;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 import dao.DAOHotelRemoto;
 import dominio.Hotel;
@@ -12,6 +13,7 @@ import negocio.IAdministracionHotelRemoto;
 import negocio.IConsultaHotelLocal;
 import negocio.IConsultaHotelRemoto;
 
+@Stateless
 public class GestionHoteles implements IAdministracionHotelLocal, IAdministracionHotelRemoto, IConsultaHotelLocal, IConsultaHotelRemoto {
 	
 	@EJB

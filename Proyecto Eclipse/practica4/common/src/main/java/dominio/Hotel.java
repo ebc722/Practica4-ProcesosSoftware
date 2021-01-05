@@ -1,13 +1,34 @@
 package dominio;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
-public class Hotel {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name="Hoteles")
+public class Hotel implements Serializable{
+	
+	@Id
+	@GeneratedValue
 	private String id;
+	
 	private String nombre;
 	private String direccion;
 	private String localidad;
+	
+	@OneToMany
+	@JoinColumn(name="reserva_fk")
 	private HashSet<Reserva> reservas;
+	
+	@OneToMany
+	@JoinColumn(name="habitacion_fk")
 	private HashSet<TipoHabitacion> habitaciones;
 	
 	public Hotel(String nombre, String direccion, String localidad, HashSet<TipoHabitacion> habitaciones) {
@@ -18,6 +39,8 @@ public class Hotel {
 		reservas = new HashSet<Reserva>();
 		habitaciones = new HashSet<TipoHabitacion>();
 	}
+	
+	public Hotel() {}
 
 	public String getId() {
 		return id;

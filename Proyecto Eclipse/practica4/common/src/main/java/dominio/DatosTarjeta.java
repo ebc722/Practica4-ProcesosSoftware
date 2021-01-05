@@ -1,11 +1,28 @@
 package dominio;
 
-public class DatosTarjeta 
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name="DatosTarjetas")
+public class DatosTarjeta implements Serializable
 {
+	@Id
+	@GeneratedValue
 	private String numTarjeta;
+	
 	private String cvc;
 	private String mesCaducidad;
 	private String añoCaducidad;
+	
+	@Enumerated(value=EnumType.STRING)
 	private TipoTarjeta tipo;
 
 	public DatosTarjeta(String numTarjeta, String cvc, String mesCaducidad, String añoCaducidad, TipoTarjeta tipo) 
@@ -16,6 +33,8 @@ public class DatosTarjeta
 		this.añoCaducidad = añoCaducidad;
 		this.tipo = tipo;
 	}
+	
+	public DatosTarjeta() {}
 
 	public String getNumTarjeta() 
 	{

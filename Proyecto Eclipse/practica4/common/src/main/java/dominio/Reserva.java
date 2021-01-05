@@ -1,15 +1,40 @@
 package dominio;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 
-public class Reserva {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name="Reservas")
+public class Reserva implements Serializable{
+	
+	@Id
+	@GeneratedValue
 	private String id;
+
 	private Date fechaEntrada;
 	private Date fechaSalida;
 	private double importe;
+	
+	@OneToOne
+	@JoinColumn(name="cliente_fk")
 	private DatosCliente cliente;
+
+	@OneToOne
+	@JoinColumn(name="tarjeta_fk")
 	private DatosTarjeta tarjeta;
+	
+	@OneToMany
+	@JoinColumn(name="habitacionesReservadas_fk")
 	private HashSet<ReservaHabitacion> habitacionesReservadas;
 	
 	public Reserva(Date fechaEntrada, Date fechaSalida, double importe, DatosCliente cliente,
@@ -21,6 +46,8 @@ public class Reserva {
 		this.tarjeta = tarjeta;
 		habitacionesReservadas = new HashSet<ReservaHabitacion>();
 	} 
+	
+	public Reserva() {}
 	
 	public String getId() {
 		return id;

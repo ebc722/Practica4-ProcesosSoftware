@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 import dao.DAOReservaRemoto;
 import dominio.DatosCliente;
@@ -19,6 +20,7 @@ import negocio.IConsultaReservaRemoto;
 import negocio.IReservaLocal;
 import negocio.IReservaRemoto;
 
+@Stateless
 public class GestionReservas implements IReservaLocal, IReservaRemoto, IConsultaReservaLocal, IConsultaReservaRemoto{
 
 	@EJB
