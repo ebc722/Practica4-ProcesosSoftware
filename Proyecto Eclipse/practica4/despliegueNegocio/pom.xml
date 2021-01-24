@@ -23,6 +23,12 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<type>ejb</type>
 		</dependency>
+		<dependency>
+			<groupId>es.unican.ps</groupId>
+			<artifactId>dao</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>ejb</type>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -38,6 +44,10 @@
 						<ejbModule>
 							<groupId>es.unican.ps</groupId>
 							<artifactId>business</artifactId>
+						</ejbModule>
+						<ejbModule>
+							<groupId>es.unican.ps</groupId>
+							<artifactId>dao</artifactId>
 						</ejbModule>
 						<jarModule>
 							<groupId>es.unican.ps</groupId>
