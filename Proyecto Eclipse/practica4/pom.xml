@@ -11,6 +11,7 @@
 		<module>business</module>
 		<module>despliegueNegocio</module>
 		<module>dao</module>
+		<module>web</module>
 	</modules>
 
 	<dependencies>

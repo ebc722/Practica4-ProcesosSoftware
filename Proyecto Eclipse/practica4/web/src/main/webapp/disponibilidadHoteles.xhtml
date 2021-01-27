@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://java.sun.com/jsf/html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Disponibilidad de habitaciones</h1>
+	<p:form>
+	<p:dataTable var="habitacion" border="1" value="#{hotelesBeans.habitacionesHotel}">
+		<p:column id="column1">
+			<p:facet name="header">
+				<p:outputText value="Tipo Habitación"></p:outputText>
+			</p:facet>
+			<p:outputText value="#{habitacion.nombreHabitacion}"></p:outputText>
+		</p:column>
+		<p:column id="column2">
+			<p:facet name="header">
+				<p:outputText value="Disponibles"></p:outputText>
+			</p:facet>
+			<p:outputText value="#{habitacion.disponibles}"></p:outputText>
+		</p:column>
+		<p:column id="column3">
+			<p:facet name="header">
+				<p:outputText value="Precio Habitación"></p:outputText>
+			</p:facet>
+			<p:outputText value="#{habitacion.precioPorNoche}"></p:outputText>
+		</p:column>
+		<p:column id="column4">
+			<p:facet name="header">
+				<p:outputText value="Número de Habitaciones"></p:outputText>
+			</p:facet>
+				<p:inputText></p:inputText>
+			</p:column>
+	</p:dataTable>
+	</p:form>
+	<p:form>
+		<p:commandButton value="Reservar" action="datosReserva.xhtml"></p:commandButton>
+		<p:commandButton value="Volver" action="hoteles.xhtml"></p:commandButton>
+	</p:form>
+</body>
+</html>

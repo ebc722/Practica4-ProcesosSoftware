@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -21,7 +23,7 @@ public class DatosHoteles implements DAOHotelLocal, DAOHotelRemoto{
 	public HashSet<Hotel> obtenerHoteles() {
 		HashSet<Hotel> prov = new HashSet<Hotel>();
 		
-		Query q = em.createNamedQuery("SELECT h FROM Hotel h");
+		Query q = em.createQuery("SELECT h FROM Hotel h");
 		List<Hotel> hoteles = q.getResultList();
 		
 		for(Hotel h : hoteles)

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Lista de hoteles</h1>
+	<p:form>
+		<p:outputText value="Fecha de Entrada"></p:outputText>
+		<p:inputText style="height: 20px; "></p:inputText>
+	</p:form>
+	<p:form>
+		<p:outputText value="Fecha de Salida"></p:outputText>
+		<p:inputText style="height: 19px; "></p:inputText>
+	</p:form>
+	<h:form>
+	<h:dataTable value="#{hotelesBeans.hoteles}" var="hotel" border="1" style="width: 393px; height: 97px; " rules="all">
+		<h:column id="column1">
+			<f:facet name="header">
+				<h:outputText value="Hotel"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{hotel.nombre}"></h:outputText>
+		</h:column>
+		<h:column id="column2">
+			<f:facet name="header">
+				<h:outputText value="Localidad"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{hotel.localidad}"></h:outputText>
+		</h:column>
+		<h:column id="column3">
+			<f:facet name="header">
+				<h:outputText value="Direccion"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{hotel.direccion}"></h:outputText>
+		</h:column>
+		<h:column>
+				<h:commandButton value="Ver Disponibilidad" immediate="true" actionListener="#{hotelesBeans.doTipoParaHotel(hotel)}"></h:commandButton>
+		</h:column>
+	</h:dataTable>
+	</h:form>
+	<h:form>
+		<p:commandButton action="index.xhtml" value="Inicio"></p:commandButton>
+	</h:form>
+</body>
+</html>

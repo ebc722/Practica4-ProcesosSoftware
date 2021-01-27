@@ -29,6 +29,12 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<type>ejb</type>
 		</dependency>
+		<dependency>
+			<groupId>es.unican.ps</groupId>
+			<artifactId>web</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -53,6 +59,10 @@
 							<groupId>es.unican.ps</groupId>
 							<artifactId>common</artifactId>
 						</jarModule>
+						<webModule>
+							<groupId>es.unican.ps</groupId>
+							<artifactId>web</artifactId>
+						</webModule>
 					</modules>
 				</configuration>
 			</plugin>

@@ -3,6 +3,7 @@ package hoteles;
 import java.util.HashSet;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 
 import dao.DAOHotelRemoto;
@@ -27,8 +28,13 @@ public class GestionHoteles implements IAdministracionHotelLocal, IAdministracio
 		
 		for(Hotel h : hotelesBD)
 		{
+			System.out.println("La localidad a filtrar es" +localidad);
+			System.out.println("La localidad actual es" +h.getLocalidad());
+			
 			if(h.getLocalidad().equals(localidad))
 			{
+				System.out.println("He entrado, la localidad a filtrar es" +localidad);
+				System.out.println("He entrado, la localidad actual es" +h.getLocalidad());
 				listaHotelesRetornar.add(h);
 			}
 		}
@@ -44,7 +50,7 @@ public class GestionHoteles implements IAdministracionHotelLocal, IAdministracio
 		
 		for(Hotel h : hotelesBD)
 		{
-			if(h.getLocalidad().equals(nombreHotel))
+			if(h.getNombre().equals(nombreHotel))
 			{
 				listaHotelesRetornar.add(h);
 			}

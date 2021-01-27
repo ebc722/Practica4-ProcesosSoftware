@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Central de Reservas</h1>
+	<h:form>
+		<p:outputText value="Nombre del Hotel"></p:outputText>
+		<h:inputText style="height: 26px; width: 194px; "
+			value="#{hotelesBeans.nombreHotel}"></h:inputText>
+		<br></br>
+		<p:outputText value="Localidad"></p:outputText>
+		<h:inputText style="height: 28px; width: 200px; "
+			value="#{hotelesBeans.localidadHotel}"></h:inputText>
+		<br></br>
+		<p:commandButton action="#{hotelesBeans.doBuscaHotelNombre}"
+			value="Buscar por Nombre"></p:commandButton>
+		<p:commandButton action="#{hotelesBeans.doBuscaHotelLocalidad}"
+			value="Buscar por Localidad"></p:commandButton>
+	</h:form>
+</body>
+</html>

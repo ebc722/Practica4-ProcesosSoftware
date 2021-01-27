@@ -13,7 +13,6 @@ import javax.persistence.Table;
 public class DatosCliente implements Serializable{
 	
 	@Id
-	@GeneratedValue
 	private String dni;
 	
 	private String nombre;

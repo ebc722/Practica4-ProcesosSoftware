@@ -22,7 +22,7 @@ public class DatosReservas implements DAOReservaLocal, DAOReservaRemoto {
 	public HashSet<Reserva> obtenerReservas() {
 		HashSet<Reserva> prov = new HashSet<Reserva>();
 		
-		Query q = em.createNamedQuery("SELECT h FROM Hotel h");
+		Query q = em.createQuery("SELECT r FROM Reserva r");
 		List<Reserva> reservas = q.getResultList();
 		
 		for(Reserva r : reservas)
